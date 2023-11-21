@@ -2,9 +2,11 @@ package main
 
 import (
 	"flag"
-	"log"
+	"os"
+	"path"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/logger"
 )
 
 func parseArgs() (string, string) {
@@ -24,6 +26,8 @@ func main() {
 		return c.Next()
 	})
 
+	app.Use(logger.New())
+
 	app.Static("/data", dir, fiber.Static{
 		ByteRange: true,
 	})
@@ -35,7 +39,19 @@ func main() {
 func lsController(c *fiber.Ctx) error {
 	dir := c.Locals("dir").(string)
 	location := c.Query("d")
-	log.Println(dir + location)
-
-	return c.Send([]byte(location))
+	target := path.Join(dir, location)
+	files, err := os.ReadDir(target)
+	if err != nil {
+		return c.Status(500).JSON(fiber.Map{
+			"error":   true,
+			"message": err.Error(),
+		})
+	}
+	fileNames := []string{}
+	for _, file := range files {
+		fileNames = append(fileNames, file.Name())
+	}
+	return c.Status(200).JSON(fiber.Map{
+		"files": fileNames,
+	})
 }
