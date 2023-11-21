@@ -36,7 +36,7 @@ func main() {
 	app.Static("/data", dir, fiber.Static{ByteRange: true})
 	app.Get("/api/ls", lsController)
 	app.Get("/style.css", StyleController)
-	app.Get("/*", mediaController)
+	app.Get("/*", MediaController)
 
 	app.Listen(":" + port)
 }
@@ -71,14 +71,13 @@ func StyleController(c *fiber.Ctx) error {
 	return c.SendFile("views/style.css")
 }
 
-func mediaController(c *fiber.Ctx) error {
+func MediaController(c *fiber.Ctx) error {
 	dir := c.Locals("dir").(string)
 	location := c.Params("*")
 	target := path.Join(dir, location)
 	isdir, err := isDir(target)
 	if err != nil {
-		log.Println(err)
-		return ErrorView(err, c)
+		return ErrorView(err.Error(), c)
 	}
 
 	if isdir {
@@ -92,9 +91,9 @@ func mediaController(c *fiber.Ctx) error {
 	case Music:
 	case Text:
 	case Err:
-		return ErrorView(err, c)
+		return ErrorView(err.Error(), c)
 	}
-	return ErrorView(nil, c)
+	return ErrorView("hi", c)
 }
 
 type FileType string
@@ -116,13 +115,9 @@ type File struct {
 
 func DirView(location string, c *fiber.Ctx) error {
 	files := []File{}
-	// if location == "." {
-	// 	location = "./"
-	// }
-	log.Println(location)
 	os_files, err := os.ReadDir(location)
 	if err != nil {
-		return ErrorView(err, c)
+		return ErrorView(err.Error(), c)
 	}
 
 	for _, file := range os_files {
@@ -137,15 +132,17 @@ func DirView(location string, c *fiber.Ctx) error {
 		}
 	}
 
+	log.Printf("%+v\n", files)
+
 	return c.Render("dir", fiber.Map{
 		"Location": location,
 		"Files":    files,
 	}, "layout")
 }
 
-func ErrorView(err error, c *fiber.Ctx) error {
+func ErrorView(message string, c *fiber.Ctx) error {
 	return c.Render("error", fiber.Map{
-		"Message": err.Error(),
+		"Message": message,
 	}, "layout")
 }
 
