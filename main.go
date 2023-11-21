@@ -49,7 +49,11 @@ func lsController(c *fiber.Ctx) error {
 	}
 	fileNames := []string{}
 	for _, file := range files {
-		fileNames = append(fileNames, file.Name())
+		fileName := file.Name()
+		if file.Type().IsDir() {
+			fileName += "/"
+		}
+		fileNames = append(fileNames, fileName)
 	}
 	return c.Status(200).JSON(fiber.Map{
 		"files": fileNames,
