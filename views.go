@@ -15,13 +15,17 @@ func DirView(location string, c *fiber.Ctx) error {
 
 	for _, file := range os_files {
 		fileName := file.Name()
+		if len(fileName) == 0 {
+			continue
+		} else if fileName[0] == '.' {
+			continue
+		}
+
 		if file.IsDir() {
-			files = append(files, File{
-				Dir, getFileExt(fileName), getFileName(fileName)})
+			files = append(files, File{Dir, "", fileName})
 		} else {
-			name := file.Name()
 			files = append(files, File{
-				getFileType(name), getFileExt(fileName), getFileName(name)})
+				getFileType(fileName), getFileExt(fileName), getFileName(fileName)})
 		}
 	}
 	// TODO: sort files in dir, video, music, image, text order + name

@@ -36,16 +36,17 @@ p {
 
 .file {
   display: flex;
-  gap: 4px;
   align-items: end;
 }
 
 .type {
   font-size: 12px;
+  width: 100px;
 }
 
 .name {
   font-size: 16px;
+  font-weight: bold;
 }
 
 .ext {
