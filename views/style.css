@@ -3,6 +3,22 @@ body, html {
   padding: 0;
 }
 
+body {
+  width: 100%;
+  height: 100%;
+  background-color: #0d1117;
+  color: white;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 p {
   margin: 0;
 }
