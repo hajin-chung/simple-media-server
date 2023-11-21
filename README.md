@@ -1,6 +1,6 @@
 # Simple Media Server
 
-sms
+Simple Media Server with a default web interface and a api for extension
 
 mainly video streaming purposes.
 
@@ -14,6 +14,6 @@ mainly video streaming purposes.
 
 # API spec
 
-1. ls 
-    - method: GET
-    - url: `/ls?d=[location]`
+1. ls
+   - method: GET
+   - url: `/ls?d=[location]`

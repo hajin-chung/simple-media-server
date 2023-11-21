@@ -1,0 +1,16 @@
+<p class="location">{{.Location}}</p>
+<div class="files">
+  {{range .Files}}
+  <div class="file">
+    <p class="type">
+      {{.Type}}
+    </p>
+    <p class="name">
+      {{.Name}}
+    </p>
+    <p class="ext">
+      {{.Ext}}
+    </p>
+  </div>
+  {{end}}
+</div>

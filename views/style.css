@@ -1,0 +1,38 @@
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+}
+
+.location {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.files {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.file {
+  display: flex;
+  gap: 4px;
+  align-items: end;
+}
+
+.type {
+  font-size: 12px;
+}
+
+.name {
+  font-size: 16px;
+}
+
+.ext {
+  font-size: 12px;
+  font-weight: bold;
+}
