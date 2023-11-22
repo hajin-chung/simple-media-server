@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+	"net/url"
 	"os"
 	"path"
 
@@ -34,26 +36,33 @@ func LsController(c *fiber.Ctx) error {
 }
 
 func StyleController(c *fiber.Ctx) error {
-	return c.SendFile("views/style.css")
+	fileName := c.Params("*")
+	return c.SendFile(fmt.Sprintf("views/%s.css", fileName))
 }
 
 func MediaController(c *fiber.Ctx) error {
-	dir := c.Locals("dir").(string)
-	location := c.Params("*")
-	target := path.Join(dir, location)
-	isdir, err := isDir(target)
+	base := c.Locals("base").(string)
+	filePath := c.Params("*")
+	filePath, err := url.QueryUnescape(filePath)
+	if err != nil {
+		return ErrorView(err.Error(), c)
+	}
+
+	fullPath := path.Join(base, filePath)
+	isdir, err := isDir(fullPath)
 	if err != nil {
 		return ErrorView(err.Error(), c)
 	}
 
 	if isdir {
-		return DirView(target, c)
+		return DirView(base, filePath, c)
 	}
 
-	fileType := getFileType(target)
+	fileType := getFileType(fullPath)
 
 	switch fileType {
 	case Video:
+		return VideoView(base, filePath, c)
 	case Music:
 	case Text:
 	case Err:
@@ -61,4 +70,3 @@ func MediaController(c *fiber.Ctx) error {
 	}
 	return ErrorView("hi", c)
 }
-

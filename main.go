@@ -24,15 +24,15 @@ func main() {
 		Views: engine,
 	})
 	app.Use(func(c *fiber.Ctx) error {
-		c.Locals("dir", dir)
+		c.Locals("base", dir)
 		return c.Next()
 	})
 
 	app.Use(logger.New())
 
 	app.Static("/data", dir, fiber.Static{ByteRange: true})
+	app.Static("/static", "static")
 	app.Get("/api/ls", LsController)
-	app.Get("/style.css", StyleController)
 	app.Get("/*", MediaController)
 
 	app.Listen(":" + port)

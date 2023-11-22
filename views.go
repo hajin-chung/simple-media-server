@@ -2,37 +2,38 @@ package main
 
 import (
 	"os"
+	"path"
 
 	"github.com/gofiber/fiber/v2"
 )
 
-func DirView(location string, c *fiber.Ctx) error {
-	files := []File{}
-	os_files, err := os.ReadDir(location)
+func DirView(base string, filePath string, c *fiber.Ctx) error {
+	files, err := getDirList(path.Join(base, filePath))
 	if err != nil {
 		return ErrorView(err.Error(), c)
 	}
 
-	for _, file := range os_files {
-		fileName := file.Name()
-		if len(fileName) == 0 {
-			continue
-		} else if fileName[0] == '.' {
-			continue
-		}
-
-		if file.IsDir() {
-			files = append(files, File{Dir, "", fileName})
-		} else {
-			files = append(files, File{
-				getFileType(fileName), getFileExt(fileName), getFileName(fileName)})
-		}
-	}
-	// TODO: sort files in dir, video, music, image, text order + name
-
 	return c.Render("dir", fiber.Map{
-		"Location": location,
-		"Files":    files,
+		"Path": filePath,
+		"Files": files,
+	}, "layout")
+}
+
+func VideoView(base string, filePath string, c *fiber.Ctx) error {
+	fullPath := path.Join(base, filePath)
+	_, err := os.Open(path.Join(fullPath))
+	if err != nil {
+		return ErrorView(err.Error(), c)
+	}
+	parentPath, _ := path.Split(fullPath)
+	playlist, err := getDirList(parentPath)
+	if err != nil {
+		return ErrorView(err.Error(), c)
+	}
+
+	return c.Render("video", fiber.Map{
+		"Path": filePath,
+		"PlayList": playlist,
 	}, "layout")
 }
 

@@ -1,0 +1,7 @@
+function signal() {
+
+}
+
+function effect() {
+
+}

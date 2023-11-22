@@ -1,11 +1,11 @@
-<p class="location">{{.Location}}</p>
+<p class="path">{{.Path}}</p>
 <div class="files">
   {{range .Files}}
   <div class="file">
     <p class="type">
       {{.Type}}
     </p>
-    <a class="name" href="./{{.Name}}{{.Ext}}">
+    <a class="name" href="{{$.Path}}/{{.Path}}">
       {{.Name}}
     </a>
     <p class="ext">
@@ -13,4 +13,5 @@
     </p>
   </div>
   {{end}}
+  <a href="./hi">hi</a>
 </div>

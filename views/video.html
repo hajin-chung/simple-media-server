@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="/static/video.css" />
+<div id="player">
+  <p id="path">{{.Path}}</p>
+  <video autoplay="false" name="media" id="video">
+    <source src="/data/{{.Path}}" type="video/mp4">
+  </video>
+  <div class="playlist">
+    {{range .PlayList}}
+    <div class="item">
+      <a class="name" href="{{.Path}}">{{.Name}}</a>
+    </div>
+    {{end}}
+  </div>
+</div>
+<script>
+  const video = document.getElementById("video");
+
+  function showControls() {
+    
+  }
+
+  function closeControls() {
+
+  }
+
+  video.addEventListener("click", () => {
+    
+  })
+</script>

@@ -20,6 +20,7 @@ type File struct {
 	Type FileType
 	Ext  string
 	Name string
+	Path string
 }
 
 func isDir(target string) (bool, error) {
@@ -50,8 +51,13 @@ func getFileExt(filename string) string {
 
 func getFileType(target string) FileType {
 	extension := path.Ext(target)
+	if len(extension) == 0 {
+		return Text
+	}
+
+	extension = extension[1:]
 	switch extension {
-	case "mp4":
+	case "mp4", "ts":
 		return Video
 	case "mp3":
 		return Music
@@ -60,4 +66,35 @@ func getFileType(target string) FileType {
 	default:
 		return Text
 	}
+}
+
+func getDirList(path string) ([]File, error) {
+	files := []File{}
+	os_files, err := os.ReadDir(path)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, file := range os_files {
+		fileName := file.Name()
+		if len(fileName) == 0 {
+			continue
+		} else if fileName[0] == '.' {
+			continue
+		}
+		println(fileName)
+
+		if file.IsDir() {
+			files = append(files, File{Dir, "", fileName, fileName})
+		} else {
+			files = append(files, File{
+				getFileType(fileName),
+				getFileExt(fileName),
+				getFileName(fileName),
+				fileName,
+			})
+		}
+	}
+	// TODO: sort files in dir, video, music, image, text order + name
+	return files, nil
 }
