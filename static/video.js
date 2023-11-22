@@ -7,6 +7,9 @@ const fullscreenButton = document.querySelector(".controls .fullscreen");
 const video = document.getElementById("video");
 const playlist = document.querySelector(".playlist");
 const playlistButton = document.querySelector(".playlistButton");
+const progressBar = document.querySelector(".progress-bar");
+const playedBar = document.querySelector(".played-bar");
+const loadedBar = document.querySelector(".loaded-bar");
 
 let isPlaylistOpen = false;
 
@@ -41,14 +44,12 @@ if (!isMobile) {
 
 let isShowingControls = true;
 function showControls() {
-  console.log("hi2");
   isShowingControls = true;
   controls.style.opacity = "1";
   document.body.style.cursor = "auto";
 }
 
 function hideControls() {
-  console.log("hi1");
   isShowingControls = false;
   controls.style.opacity = "0";
   document.body.style.cursor = "none";
@@ -90,3 +91,16 @@ player.addEventListener("click", () => {
 player.addEventListener("mouseleave", () => {
   hideControls();
 })
+
+progressBar.addEventListener("click", (e) => {
+  console.log(e.clientX);
+  const percent = (e.clientX - 12) / progressBar.clientWidth;
+  video.currentTime = percent * video.duration;
+});
+
+function handleProgress() {
+  const percent = (video.currentTime / video.duration) * 100;
+  playedBar.style.width = `${percent}%`;
+}
+video.addEventListener("timeupdate", handleProgress)
+
