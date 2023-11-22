@@ -22,6 +22,7 @@ func main() {
 	engine := html.New("./views", ".html")
 	app := fiber.New(fiber.Config{
 		Views: engine,
+		DisableStartupMessage: true,
 	})
 	app.Use(func(c *fiber.Ctx) error {
 		c.Locals("base", dir)
