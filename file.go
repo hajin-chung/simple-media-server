@@ -82,7 +82,6 @@ func getDirList(path string) ([]File, error) {
 		} else if fileName[0] == '.' {
 			continue
 		}
-		println(fileName)
 
 		if file.IsDir() {
 			files = append(files, File{Dir, "", fileName, fileName})
