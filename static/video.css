@@ -39,7 +39,7 @@ html body {
   position: absolute;
   top: 4;
   right: 4;
-  height: calc(100% - 48px);
+  height: calc(100% - 100px);
   display: flex;
   flex-direction: column;
   align-items: end;
