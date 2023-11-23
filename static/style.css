@@ -98,18 +98,15 @@ button:hover {
 }
 
 .type {
-  font-size: 12px;
-  width: 100px;
+  margin-right: 12px;
 }
 
 .name {
   font-size: 16px;
-  font-weight: bold;
 }
 
 .ext {
-  font-size: 12px;
-  font-weight: bold;
+  font-size: 16px;
 }
 
 button {
