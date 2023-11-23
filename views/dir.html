@@ -5,7 +5,7 @@
     <p class="type">
       {{.Type}}
     </p>
-    <a class="name" href="{{$.Path}}/{{.Path}}">
+    <a class="name" href="{{$.Path}}/{{.Path}}" {{if ne .Type "dir" }} hx-boost="false" {{end}}>
       {{.Name}}
     </a>
     <p class="ext">
