@@ -42,9 +42,11 @@ function playVideo() {
 function fullscreen() {
   if (!document.fullscreenElement) {
     player.requestFullscreen();
+    if (isMobile) screen.orientation.lock("landscape-primary");
     fullscreenButtonIcon.src = "/static/icons/exit-fullscreen.svg";
   } else if (document.exitFullscreen) {
     document.exitFullscreen();
+    if (isMobile) screen.orientation.unlock();
     fullscreenButtonIcon.src = "/static/icons/fullscreen.svg";
   }
 }
