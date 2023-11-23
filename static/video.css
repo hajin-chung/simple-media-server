@@ -23,7 +23,7 @@ html body {
   left: 0;
   overflow: hidden;
   position: absolute;
-  transition: opacity 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .controls > .title {
@@ -39,13 +39,14 @@ html body {
   position: absolute;
   top: 4;
   right: 4;
+  height: calc(100% - 48px);
   display: flex;
   flex-direction: column;
   align-items: end;
 }
 
 .right > .playlist {
-  max-height: 60%;
+  max-height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
   padding: 4px;
   border-radius: 2px;
@@ -53,7 +54,7 @@ html body {
   transition: all 0.3s ease-in-out;
 }
 
-.hide {
+.playlist.hide {
   transform: translateX(calc(100% + 20px));
 }
 
@@ -69,28 +70,39 @@ html body {
 }
 
 .controls > .bottom > .progress-bar {
-  height: 3px;
+  height: 10px;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.1);
   position: relative;
 }
 
+.controls > .bottom > .progress-bar:hover {
+  cursor: pointer;
+}
+
+.progress-bar > .total-bar {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
 .progress-bar > .played-bar {
-  top: 0;
+  height: 4px;
+  bottom: 0;
   left: 0;
   width: 0;
   position: absolute;
-  height: 100%;
   background-color: #687EFF;
 }
 
 .progress-bar > .loaded-bar {
-  top: 0;
+  height: 4px;
+  bottom: 0;
   left: 0;
   width: 0;
   position: absolute;
-  height: 100%;
-  height: 100%;
 }
 
 .bottom > .buttons {
@@ -103,8 +115,24 @@ html body {
 }
 
 .buttons > .group {
+  position: relative;
   display: flex;
   gap: 4px;
+}
+
+.time {
+ margin-left: 12px;
+}
+
+.playback-options {
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+  margin-right: 4px;
+}
+
+.playback-options.hide {
+  display: none;
 }
 
 #player > video {

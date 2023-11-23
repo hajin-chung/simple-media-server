@@ -7,6 +7,7 @@
     <p class="title">{{.Path}}</p>
     <div class="bottom">
       <div class="progress-bar">
+        <div class="total-bar"></div>
         <div class="played-bar"></div>
         <div class="loaded-bar"></div>
       </div>
@@ -18,10 +19,18 @@
           <button class="next">
             <img src="/static/icons/next.svg" class="icon" />
           </button>
+          <p class="time"></p>
         </div>
         <div class="group">
-          <button class="setting">
-            <img src="/static/icons/setting.svg" class="icon" />
+          <div class="playback-options hide">
+            <button value="2.0">x2.0</button>
+            <button value="1.7">x1.7</button>
+            <button value="1.5">x1.5</button>
+            <button value="1.0">x1.0</button>
+            <button value="0.5">x0.5</button>
+          </div>
+          <button class="playback">
+            <img src="/static/icons/rate.svg" class="icon" />
           </button>
           <button class="fullscreen">
             <img src="/static/icons/fullscreen.svg" class="icon" />
