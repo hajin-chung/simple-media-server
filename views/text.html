@@ -1,0 +1,13 @@
+<link rel="stylesheet" href="/static/text.css" />
+<div id="viewer">
+  <div id="list">
+    {{range .List}}
+    <a href="{{.Path}}" hx-boost="false">{{.Name}}</a>
+    {{end}}
+  </div>
+  <div id="main">
+    <p id="title">{{.Path}}</p>
+    <pre id="content">Loading...</pre>
+  </div>
+</div>
+<script src="/static/text.js"></script>

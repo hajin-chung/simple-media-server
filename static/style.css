@@ -22,12 +22,22 @@ body {
   font-family: 'Pretendard-Regular';
 }
 
-body::-webkit-scrollbar {
+::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+
+::-webkit-scrollbar-thumb {
   width: 2px;
   background-color: white;
 }
 
-body::-webkit-scrollbar-track {
+::-webkit-scrollbar-thumb:horizontal {
+  height: 2px;
+  background-color: white;
+}
+
+::-webkit-scrollbar-track {
   background-color: transparent;
 }
 

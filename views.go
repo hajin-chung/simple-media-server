@@ -37,6 +37,25 @@ func VideoView(base string, filePath string, c *fiber.Ctx) error {
 	}, "layout")
 }
 
+func TextView(base string, filePath string, c *fiber.Ctx) error {
+	fullPath := path.Join(base, filePath)
+	_, err := os.Open(path.Join(fullPath))
+	if err != nil {
+		return ErrorView(err.Error(), c)
+	}
+	
+	parentPath, _ := path.Split(fullPath)
+	dirList, err := getDirList(parentPath)
+	if err != nil {
+		return ErrorView(err.Error(), c)
+	}
+
+	return c.Render("text", fiber.Map{
+		"Path": filePath,
+		"List": dirList,
+	}, "layout")
+}
+
 func ErrorView(message string, c *fiber.Ctx) error {
 	return c.Render("error", fiber.Map{
 		"Message": message,

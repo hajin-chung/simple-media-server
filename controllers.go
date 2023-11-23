@@ -65,6 +65,7 @@ func MediaController(c *fiber.Ctx) error {
 		return VideoView(base, filePath, c)
 	case Music:
 	case Text:
+		return TextView(base, filePath, c)
 	case Err:
 		return ErrorView(err.Error(), c)
 	}

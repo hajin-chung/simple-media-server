@@ -141,11 +141,3 @@ html body {
   background-color: black;
 }
 
-.controls > .playlist::-webkit-scrollbar {
-  width: 2px;
-  background-color: white;
-}
-
-.controls > .playlist::-webkit-scrollbar-track {
-  background-color: black;
-}
