@@ -11,19 +11,35 @@
         <div class="loaded-bar"></div>
       </div>
       <div class="buttons">
-        <button class="play">
-        </button>
-        <button class="fullscreen">
-        </button>
+        <div class="group">
+          <button class="play">
+            <img src="/static/icons/play.svg" class="icon" />
+          </button>
+          <button class="next">
+            <img src="/static/icons/next.svg" class="icon" />
+          </button>
+        </div>
+        <div class="group">
+          <button class="setting">
+            <img src="/static/icons/setting.svg" class="icon" />
+          </button>
+          <button class="fullscreen">
+            <img src="/static/icons/fullscreen.svg" class="icon" />
+          </button>
+        </div>
       </div>
     </div>
-    <button class="playlistButton"> </button>
-    <div class="playlist hide">
-      {{range .PlayList}}
-      <div class="item">
-        <a class="name" href="{{.Path}}">{{.Name}}</a>
+    <div class="right">
+      <button class="playlistButton">
+        <img src="/static/icons/playlist.svg" class="icon" />
+      </button>
+      <div class="playlist hide">
+        {{range .PlayList}}
+        <div class="item">
+          <a class="name" href="{{.Path}}">{{.Name}}</a>
+        </div>
+        {{end}}
       </div>
-      {{end}}
     </div>
   </div>
 </div>
