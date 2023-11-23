@@ -1,5 +1,3 @@
-const { signal, effect } = window.signals;
-
 const isMobile = checkMobile();
 const player = document.getElementById("player");
 const controls = document.querySelector(".controls");
@@ -15,6 +13,7 @@ const progressBar = document.querySelector(".progress-bar");
 const playedBar = document.querySelector(".played-bar");
 const loadedBar = document.querySelector(".loaded-bar");
 const timeMessage = document.querySelector(".time");
+const nextButton = document.querySelector(".next");
 
 let hideTimeout = undefined;
 let isPlaylistOpen = false;
@@ -154,4 +153,13 @@ playbackButton.addEventListener("click", () => {
     video.playbackRate = button.attributes['value'].value;
     playbackOptions.classList.add("hide");
   })
+})
+
+nextButton.addEventListener("click", () => {
+  const episodes = document.querySelectorAll(".item > a");
+  const title = document.querySelector(".title").innerHTML;
+  const name = title.split('/').pop().split('.').slice(0, -1).join('.');
+
+  const idx = [...episodes].findIndex((el) => el.innerText == name);
+  if (idx + 1 < episodes.length) window.location.href = episodes[idx+1].href;
 })
