@@ -1,21 +1,23 @@
 <link rel="stylesheet" href="/static/text.css" />
-<div id="viewer">
-  <div class="files">
-    {{range .Files}}
-    <div class="file">
-      <img src="/static/icons/{{.Type}}.svg" class="icon type" />
-      <a class="name" href="../{{.Path}}">
-        {{.Name}}
-      </a>
-      <p class="ext">
-        {{.Ext}}
-      </p>
+<main>
+  <p class="path">{{.Path}}</p>
+  <div id="viewer">
+    <div class="files">
+      {{range .Files}}
+      <div class="file">
+        <img src="/static/icons/{{.Type}}.svg" class="icon type" />
+        <a class="name" href="../{{.Path}}">
+          {{.Name}}
+        </a>
+        <p class="ext">
+          {{.Ext}}
+        </p>
+      </div>
+      {{end}}
     </div>
-    {{end}}
+    <div id="main">
+      <pre id="content">Loading...</pre>
+    </div>
   </div>
-  <div id="main">
-    <p id="title">{{.Path}}</p>
-    <pre id="content">Loading...</pre>
-  </div>
-</div>
-<script src="/static/text.js"></script>
+  <script src="/static/text.js"></script>
+</main>
