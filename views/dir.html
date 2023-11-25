@@ -3,7 +3,7 @@
   {{range .Files}}
   <div class="file">
     <img src="/static/icons/{{.Type}}.svg" class="icon type" />
-    <a class="name" href="{{$.Path}}/{{.Path}}" {{if ne .Type "dir" }} hx-boost="false" {{end}}>
+    <a class="name" href="{{$.Path}}/{{.Path}}">
       {{.Name}}
     </a>
     <p class="ext">

@@ -1,8 +1,8 @@
 @font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
+  font-family: 'Pretendard-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
 }
 
 * {
@@ -20,6 +20,7 @@ body {
   background-color: #0d1117;
   color: white;
   font-family: 'Pretendard-Regular';
+  padding: 8px;
 }
 
 ::-webkit-scrollbar {
@@ -54,6 +55,23 @@ p {
   margin: 0;
 }
 
+.path {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.path > .home > img {
+  width: 24px;
+  height: 24px;
+}
+
+.path a { 
+  font-size: 16px;
+  font-weight: bold;
+}
+
 img.icon {
   width: 24px;
   height: 24px;
@@ -81,11 +99,6 @@ button:hover {
   cursor: pointer;
 }
 
-.location {
-  font-size: 24px;
-  font-weight: bold;
-}
-
 .files {
   display: flex;
   flex-direction: column;
@@ -94,7 +107,7 @@ button:hover {
 
 .file {
   display: flex;
-  align-items: end;
+  align-items: center;
 }
 
 .type {

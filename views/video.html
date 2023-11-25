@@ -4,7 +4,7 @@
     <source src="/data/{{.Path}}" type="video/mp4">
   </video>
   <div class="controls">
-    <p class="title">{{.Path}}</p>
+    <p class="path">{{.Path}}</p>
     <div class="bottom">
       <div class="progress-bar">
         <div class="total-bar"></div>
@@ -45,7 +45,7 @@
       <div class="playlist hide">
         {{range .PlayList}}
         <div class="item">
-          <a class="name" href="{{.Path}}" hx-boost="false">{{.Name}}</a>
+          <a class="name" href="{{.Path}}">{{.Name}}</a>
         </div>
         {{end}}
       </div>

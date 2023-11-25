@@ -5,14 +5,12 @@
   overflow: hidden;
 }
 
-#files {
+.files {
   overflow: scroll;
-  gap: 4px;
-  height: 100%;
   width: 320px;
 }
 
-#files a {
+.files a {
   white-space: nowrap;
 }
 

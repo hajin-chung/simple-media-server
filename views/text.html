@@ -1,10 +1,10 @@
 <link rel="stylesheet" href="/static/text.css" />
 <div id="viewer">
-  <div id="files">
-    {{range .List}}
+  <div class="files">
+    {{range .Files}}
     <div class="file">
       <img src="/static/icons/{{.Type}}.svg" class="icon type" />
-      <a class="name" href="../{{.Path}}" hx-boost="false">
+      <a class="name" href="../{{.Path}}">
         {{.Name}}
       </a>
       <p class="ext">

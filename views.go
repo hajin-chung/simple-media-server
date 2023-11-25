@@ -45,14 +45,14 @@ func TextView(base string, filePath string, c *fiber.Ctx) error {
 	}
 	
 	parentPath, _ := path.Split(fullPath)
-	dirList, err := getDirList(parentPath)
+	files, err := getDirList(parentPath)
 	if err != nil {
 		return ErrorView(err.Error(), c)
 	}
 
 	return c.Render("text", fiber.Map{
 		"Path": filePath,
-		"List": dirList,
+		"Files": files,
 	}, "layout")
 }
 
