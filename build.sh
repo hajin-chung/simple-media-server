@@ -7,10 +7,10 @@ git pull
 
 # copy template files
 cp -r views "$PROD_PATH/"
-cp -r statuc "$PROD_PATH/"
+cp -r static "$PROD_PATH/"
 
 # build server binary
-go build -o "$PROD_PATH/sms"
+/usr/local/go/bin/go build -o "$PROD_PATH/sms"
 
 # restart server daemon
-sudo systemctl restart sms
+systemctl restart sms
