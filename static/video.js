@@ -157,9 +157,43 @@ playbackButton.addEventListener("click", () => {
 
 nextButton.addEventListener("click", () => {
   const episodes = document.querySelectorAll(".item > a");
-  const title = document.querySelector(".title").innerHTML;
+  const title = document.querySelector(".path a:last-child").innerHTML;
   const name = title.split('/').pop().split('.').slice(0, -1).join('.');
 
   const idx = [...episodes].findIndex((el) => el.innerText == name);
-  if (idx + 1 < episodes.length) window.location.href = episodes[idx+1].href;
+  if (idx + 1 < episodes.length) window.location.href = episodes[idx + 1].href;
+})
+
+document.addEventListener("keydown", (e) => {
+  switch (e.code) {
+    case "ArrowLeft":
+      video.currentTime -= 5;
+      break;
+    case "ArrowRight":
+      video.currentTime += 5;
+      break;
+    case "Space":
+      playVideo();
+      break;
+  }
+})
+
+let lastTap;
+document.addEventListener("click", (e) => {
+  if (!isMobile) return;
+
+  const now = new Date().getTime();
+  if (lastTap === undefined) {
+    lastTap = now;
+    return;
+  }
+
+  const elapsed = now - lastTap;
+  lastTap = now;
+  const direction = e.clientX - video.clientWidth / 2;
+  console.log(lastTap, direction)
+  if (elapsed < 300) {
+    if (direction < 0) video.currentTime -= 5;
+    else video.currentTime += 5;
+  }
 })

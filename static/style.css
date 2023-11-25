@@ -67,8 +67,12 @@ p {
   height: 24px;
 }
 
+.path > .home {
+  margin-right: 10px;
+}
+
 .path a { 
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
 }
 
