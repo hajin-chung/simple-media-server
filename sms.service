@@ -1,0 +1,11 @@
+[Unit]
+Description=Simple Media Server
+
+[Service]
+ExecStart=/opt/sms/sms --dir=/mnt/d/anime
+Restart=always
+User=hajin
+WorkingDirectory=/opt/sms
+
+[Install]
+WantedBy=multi-user.target
