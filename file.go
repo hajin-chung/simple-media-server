@@ -20,7 +20,6 @@ type File struct {
 	Type FileType
 	Ext  string
 	Name string
-	Path string
 }
 
 func isDir(target string) (bool, error) {
@@ -84,12 +83,11 @@ func getDirList(path string) ([]File, error) {
 		}
 
 		if file.IsDir() {
-			files = append(files, File{Dir, "", fileName, fileName})
+			files = append(files, File{Dir, "", fileName})
 		} else {
 			files = append(files, File{
 				getFileType(fileName),
 				getFileExt(fileName),
-				getFileName(fileName),
 				fileName,
 			})
 		}

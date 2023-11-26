@@ -34,6 +34,7 @@ func main() {
 	app.Static("/data", dir, fiber.Static{ByteRange: true})
 	app.Static("/static", "static")
 	app.Get("/api/ls", LsController)
+	app.Post("/upload", UploadController)
 	app.Get("/*", MediaController)
 
 	app.Listen(":" + port)

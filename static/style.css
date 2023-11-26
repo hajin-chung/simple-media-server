@@ -103,29 +103,6 @@ button:hover {
   cursor: pointer;
 }
 
-.files {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.file {
-  display: flex;
-  align-items: center;
-}
-
-.type {
-  margin-right: 12px;
-}
-
-.name {
-  font-size: 16px;
-}
-
-.ext {
-  font-size: 16px;
-}
-
 button {
   transition: all 0.3s ease-in-out;
   padding: 1px;
@@ -134,4 +111,8 @@ button {
 
 button:hover {
   background-color: rgba(255, 255, 255, 0.3);
+}
+
+.hide {
+  display: none;
 }

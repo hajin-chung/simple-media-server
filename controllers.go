@@ -1,7 +1,8 @@
 package main
 
 import (
-	"fmt"
+	"errors"
+	"log"
 	"net/url"
 	"os"
 	"path"
@@ -35,11 +36,6 @@ func LsController(c *fiber.Ctx) error {
 	})
 }
 
-func StyleController(c *fiber.Ctx) error {
-	fileName := c.Params("*")
-	return c.SendFile(fmt.Sprintf("views/%s.css", fileName))
-}
-
 func MediaController(c *fiber.Ctx) error {
 	base := c.Locals("base").(string)
 	filePath := c.Params("*")
@@ -70,4 +66,26 @@ func MediaController(c *fiber.Ctx) error {
 		return ErrorView(err.Error(), c)
 	}
 	return ErrorView("hi", c)
+}
+
+func UploadController(c *fiber.Ctx) error {
+	base := c.Locals("base").(string)
+	filePath := c.Query("path")
+	fullPath := path.Join(base, filePath)
+	log.Println(fullPath)
+	_, err := os.Stat(fullPath)
+	if errors.Is(err, os.ErrNotExist) {
+		err := os.WriteFile(fullPath, c.BodyRaw(), 0666)
+		if err != nil {
+			log.Println("write file error", err.Error())
+			return c.Status(500).JSON(fiber.Map{"error": true, "msg": err.Error()})
+		}
+		return c.Status(200).JSON(fiber.Map{"error": false})
+	} else {
+		log.Println("stat error", err.Error())
+		return c.Status(500).JSON(fiber.Map{
+			"error": true,
+			"msg":   "file already exists",
+		})
+	}
 }

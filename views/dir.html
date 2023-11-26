@@ -1,14 +1,7 @@
+<link rel="stylesheet" href="/static/dir.css" />
+<div class="hide" id="path">{{.Path}}</div>
 <p class="path">{{.Path}}</p>
-<div class="files">
-  {{range .Files}}
-  <div class="file">
-    <img src="/static/icons/{{.Type}}.svg" class="icon type" />
-    <a class="name" href="{{$.Path}}/{{.Path}}">
-      {{.Name}}
-    </a>
-    <p class="ext">
-      {{.Ext}}
-    </p>
-  </div>
-  {{end}}
-</div>
+{{ template "components/filelist" . }}
+<input type="file" name="mediaFile" id="fileInput" class="hide" />
+<button type="submit" id="fileUpload">Upload</button>
+<script src="/static/upload.js"></script>

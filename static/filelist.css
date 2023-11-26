@@ -1,0 +1,19 @@
+.files {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.file {
+  display: flex;
+  align-items: center;
+}
+
+.type {
+  margin-right: 12px;
+}
+
+.name {
+  font-size: 16px;
+}

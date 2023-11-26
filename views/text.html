@@ -2,19 +2,7 @@
 <main>
   <p class="path">{{.Path}}</p>
   <div id="viewer">
-    <div class="files">
-      {{range .Files}}
-      <div class="file">
-        <img src="/static/icons/{{.Type}}.svg" class="icon type" />
-        <a class="name" href="../{{.Path}}">
-          {{.Name}}
-        </a>
-        <p class="ext">
-          {{.Ext}}
-        </p>
-      </div>
-      {{end}}
-    </div>
+    {{ template "components/filelist" . }}
     <div id="main">
       <pre id="content">Loading...</pre>
     </div>

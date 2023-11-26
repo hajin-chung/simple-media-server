@@ -1,0 +1,11 @@
+<link rel="stylesheet" href="/static/filelist.css" />
+<div class="files">
+  {{range .Files}}
+  <div class="file">
+    <img src="/static/icons/{{.Type}}.svg" class="icon type" />
+    <a class="name" href="./{{.Name}}{{if eq .Type "dir"}}/{{end}}">
+      {{.Name}}
+    </a>
+  </div>
+  {{end}}
+</div>

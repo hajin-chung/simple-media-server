@@ -4,6 +4,7 @@ main {
   display: flex;
   flex-direction: column;
 }
+
 @media only screen and (max-width: 600px) {
   .files {
     display: none;
@@ -26,7 +27,7 @@ main {
   width: 320px;
 }
 
-.files a {
+.file a {
   white-space: nowrap;
 }
 
@@ -37,11 +38,6 @@ main {
   flex-direction: column;
   gap: 12px;
   background-color: #11171f;
-}
-
-#title {
-  font-weight: bold;
-  font-size: 20px;
 }
 
 pre {
