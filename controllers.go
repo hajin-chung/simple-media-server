@@ -2,7 +2,6 @@ package main
 
 import (
 	"errors"
-	"log"
 	"net/url"
 	"os"
 	"path"
@@ -69,23 +68,35 @@ func MediaController(c *fiber.Ctx) error {
 }
 
 func UploadController(c *fiber.Ctx) error {
-	base := c.Locals("base").(string)
+	base, ok := c.Locals("base").(string)
+	if !ok {
+		return ErrorView("hi", c)
+	}
 	filePath := c.Query("path")
 	fullPath := path.Join(base, filePath)
-	log.Println(fullPath)
+
 	_, err := os.Stat(fullPath)
 	if errors.Is(err, os.ErrNotExist) {
 		err := os.WriteFile(fullPath, c.BodyRaw(), 0666)
+		fileExt := getFileExt(filePath)
+
+		if fileExt == ".mp4" || fileExt == ".ts" {
+			go VideoTransmux(fullPath)
+		}
+
 		if err != nil {
-			log.Println("write file error", err.Error())
 			return c.Status(500).JSON(fiber.Map{"error": true, "msg": err.Error()})
 		}
 		return c.Status(200).JSON(fiber.Map{"error": false})
-	} else {
-		log.Println("stat error", err.Error())
+	} else if err != nil {
 		return c.Status(500).JSON(fiber.Map{
 			"error": true,
-			"msg":   "file already exists",
+			"msg":   err.Error(),
+		})
+	} else {
+		return c.Status(500).JSON(fiber.Map{
+			"error": true,
+			"msg":   "file exists",
 		})
 	}
 }

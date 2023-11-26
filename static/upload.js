@@ -14,7 +14,7 @@ function upload() {
       fetch(`/upload?path=${path}${file.name}`, {
         method: "POST",
         header: {
-          "Content-Type": file.type,
+          "Content-Type": "null",
         },
         body: file
       })

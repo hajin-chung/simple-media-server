@@ -23,6 +23,8 @@ func main() {
 	app := fiber.New(fiber.Config{
 		Views: engine,
 		DisableStartupMessage: true,
+		DisablePreParseMultipartForm: true,
+		StreamRequestBody: true,
 	})
 	app.Use(func(c *fiber.Ctx) error {
 		c.Locals("base", dir)
@@ -39,4 +41,3 @@ func main() {
 
 	app.Listen(":" + port)
 }
-
