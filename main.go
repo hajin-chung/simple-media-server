@@ -21,10 +21,10 @@ func main() {
 
 	engine := html.New("./views", ".html")
 	app := fiber.New(fiber.Config{
-		Views: engine,
-		DisableStartupMessage: true,
+		Views:                        engine,
+		DisableStartupMessage:        true,
 		DisablePreParseMultipartForm: true,
-		StreamRequestBody: true,
+		StreamRequestBody:            true,
 	})
 	app.Use(func(c *fiber.Ctx) error {
 		c.Locals("base", dir)

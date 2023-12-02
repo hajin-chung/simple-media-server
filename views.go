@@ -14,7 +14,7 @@ func DirView(base string, filePath string, c *fiber.Ctx) error {
 	}
 
 	return c.Render("dir", fiber.Map{
-		"Path": filePath,
+		"Path":  filePath,
 		"Files": files,
 	}, "layout")
 }
@@ -32,7 +32,7 @@ func VideoView(base string, filePath string, c *fiber.Ctx) error {
 	}
 
 	return c.Render("video", fiber.Map{
-		"Path": filePath,
+		"Path":     filePath,
 		"PlayList": playlist,
 	}, "layout")
 }
@@ -43,7 +43,7 @@ func TextView(base string, filePath string, c *fiber.Ctx) error {
 	if err != nil {
 		return ErrorView(err.Error(), c)
 	}
-	
+
 	parentPath, _ := path.Split(fullPath)
 	files, err := getDirList(parentPath)
 	if err != nil {
@@ -51,7 +51,7 @@ func TextView(base string, filePath string, c *fiber.Ctx) error {
 	}
 
 	return c.Render("text", fiber.Map{
-		"Path": filePath,
+		"Path":  filePath,
 		"Files": files,
 	}, "layout")
 }
